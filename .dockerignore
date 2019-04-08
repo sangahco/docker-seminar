@@ -1,0 +1,6 @@
+Dockerfile
+bower_components
+node_modules
+docs
+dist
+wwwroot

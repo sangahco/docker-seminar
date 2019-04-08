@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html ng-app="seminar">
+
+<head>
+	<title>SangaAh Seminar Participant List</title>
+	
+	<!-- Latest compiled and minified CSS -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" integrity="sha512-dTfge/zgoMYpP7QbHy4gWMEGsbsdZeCXz7irItjcC3sPUFtf0kuFbDz/ixG7ArTxmDjLXDmezHubeNikyKGVyQ==" crossorigin="anonymous">
+	
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	
+</head>
+
+<body>
+	<div class="container-fluid">
+		<div ng-controller="ParticipantController as ctrl">
+			<div class="page-header">
+				<h2>{{filter.event || 'Seminar'}} - Participants</h2>
+			</div>
+			<nav class="navbar navbar-default">
+				<div class="container-fluid">
+					
+					<!-- Collect the nav links, forms, and other content for toggling -->
+					<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+						<p class="navbar-text">Seminar: </p>
+						<div class="dropdown navbar-left">
+							<button class="btn btn-default dropdown-toggle navbar-btn" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+								{{filter.event || 'All Events'}}
+								<span class="caret"></span>
+							</button>
+							<ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+								<li><a href="#" ng-click="ctrl.setEvent('')" >All Events</a></li>
+								<li ng-repeat="event in ctrl.events"><a href="#" ng-click="ctrl.setEvent(event.event)">{{event.event}}</a></li>
+							</ul>
+						</div>
+						
+						<p class="navbar-text">Status: </p>
+						<div class="dropdown navbar-left">
+							<button class="btn btn-default dropdown-toggle navbar-btn" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+								{{attend[filter.attend]}}
+								<span class="caret"></span>
+							</button>
+							<ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+								<li><a href="#" ng-click="filter.attend=''" >All</a></li>
+								<li><a href="#" ng-click="filter.attend='Y'" >Will attend</a></li>
+								<li><a href="#" ng-click="filter.attend='N'" >Will not attend</a></li>
+							</ul>
+						</div>
+						
+						<form class="navbar-form navbar-left" role="search">
+							<div class="form-group">
+								<input type="text" class="form-control" placeholder="Search" ng-model="filter.$">
+							</div>
+						</form>
+
+					</div>
+					
+				</div>
+			</nav>
+			
+			<table id="pretty-table" class="table table-condensed">
+				<thead>
+					<tr>
+						<th>No.</th>
+						<th>Attend</th>
+						<th>Company</th>
+						<th>Department</th>
+						<th>Position</th>
+						<th>Name</th>
+						<th>Phone</th>
+						<th>e-mail</th>
+						<th>Submitted</th>
+					</tr>
+				</thead>
+				<tr ng-repeat="reg in ctrl.regs | filter : filter">
+					<td>{{$index + 1}}</td>
+					<td>{{reg.attend}}</td>
+					<td>{{reg.company}}</td>
+					<td>{{reg.department}}</td>
+					<td>{{reg.position}}</td>
+					<td>{{reg.name}}</td>
+					<td>{{reg.phone}}</td>
+					<td>{{reg.email}}</td>
+					<td>{{reg.reg_date}}</td>
+				</tr>
+			</table>
+		</div>
+	</div>
+	
+<script type="text/javascript" src="/ext/script/pmis_loader.js"></script>
+<script>
+	PmisJsLoader.loadModule("/ext/jquery/js/jquery-1.9.1.min.js");
+	//PmisJsLoader.loadModule("Functionsml.js");
+</script>
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.0-beta.5/angular.min.js"></script>
+
+<!-- Latest compiled and minified JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js" integrity="sha512-K1qjQ+NcF2TYO/eI3M6v8EiNYZfA95pQumfvcVrTHtwQVDG+aHRqLi/ETn2uB+1JqwYqVG3LIvdm9lj6imS/pQ==" crossorigin="anonymous"></script>
+<script>
+(function(){
+	"use strict";
+	
+	angular.module('seminar', [])
+	.factory('participants', ['$http', function($http){
+		return {
+			load: function(){
+				return $http({
+					url: "/Core/CoreList.action",
+					method: 'POST',
+					params: {
+						"user-query": "acx.seminar.selectSeminarParticipant",
+						"user-forward": "json"
+					},
+					responseType: "json"
+				});
+			}
+		};
+	}])
+	.factory('events', ['$http', function($http){
+		return {
+			load: function(){
+				return $http({
+					url: "/Core/CoreList.action",
+					method: 'POST',
+					params: {
+						"user-query": "acx.seminar.selectSeminarEvent",
+						"user-forward": "json"
+					},
+					responseType: "json"
+				});
+			}
+		};
+	}])
+	.controller('ParticipantController', ['$scope', '$log', 'participants', 'events', 
+	function($scope, $log, participants, events){
+		var self = this;
+		self.regs = [];
+		self.events = [];
+		
+		$scope.filter = { 
+			event: '',
+			attend: ''
+		};
+		
+		$scope.attend = {
+			'Y': 'Will Attend',
+			'N': 'Will Not Attend',
+			'': 'All'	
+		};
+		
+		participants.load().then(function(response){
+			self.regs = response.data.list;
+		});
+		
+		events.load().then(function(response){
+			self.events = response.data.list;
+		});
+		
+		self.setEvent = function(event){
+			$log.debug('Setting event: ', event);
+			$scope.filter.event = event;
+		};
+		
+	}]);
+	
+	
+})();
+</script>
+
+</body>
+
+</html>

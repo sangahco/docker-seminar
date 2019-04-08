@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html ng-app="seminar">
+
+<head>
+	<title>SangaAh Seminar Registration</title>
+
+	<meta http-equiv="X-UA-Compatible" content="IE=Edge"/>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	 
+<link rel="stylesheet" href="/ext/style/COMMON/css/font-awesome.min.css">
+
+<style>
+article,aside,details,figcaption,figure,footer,header,hgroup,menu,nav,section {
+display:block;
+}
+
+li {
+list-style-type:none;
+}
+
+html,body,div,span,object,h1,h2,h3,h4,h5,h6,p,blockquote,pre,abbr,address,cite,code,del,dfn,em,img,ins,kbd,q,samp,small,strong,sub,sup,var,b,i,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td,article,aside,canvas,details,figcaption,figure,footer,header,hgroup,menu,nav,section,summary,time,mark,audio,video {
+margin:0;
+padding:0;
+}
+
+.ng-invalid.ng-dirty,
+.ng-invalid-required {
+border-color:#FA787E!important;
+}
+
+.ng-valid.ng-dirty {
+border-color:#78FA89!important;
+}
+
+.wrap{
+width:788px;
+position:absolute;
+font-family:'Malgun Gothic';
+font-size:12pt;
+left:50%;
+top:50%;
+margin-left:-369px;
+margin-top:-326px;
+
+}
+
+.comment {
+position:absolute;
+text-align:center;
+top:40px;
+width:100%;
+}
+
+.comment h1{
+color:#5CA5DA;
+}
+
+.comment h4 { 
+color:#515151;
+margin-top:5px;
+}
+
+.comment h2 {
+margin-top:13px; 
+line-height:24px;
+color:#FF5A00
+}
+
+.formWrap {
+height:240px;
+left:274px;
+position:absolute;
+top:312px;
+width:360px;
+}
+
+.formWrap ul {
+height:100%;
+}
+
+.formWrap li {
+height:14.4%;
+position:relative;
+}
+
+.formWrap input[type=text],.formWrap input[type=email] {
+border:1px solid #CCC;
+padding:1%;
+width:98%;
+margin-top:5px;
+}
+
+.formWrap input[type=radio] {
+margin:0;
+padding:0;
+position:absolute;
+top:9px;
+}
+
+/*.formWrap input[type=radio]:last-child,*/
+.formWrap input[type=radio].second {
+left:135px;
+}
+
+.formWrap input[type=button] {
+background-color:#909090;
+border:0;
+border-bottom:3px solid #5C5C5C;
+color:#FFF;
+cursor:pointer;
+height:40px;
+margin-top:20px;
+width:115px;
+}
+
+.formWrap input[type=button]:hover {
+background-color:#FF5A00;
+border-bottom:3px solid #E02900;
+}
+
+buttons{
+margin-left:20px;
+}
+
+.success-msg{
+position: absolute;
+top: 17px;
+text-align: center;
+color: #358C00;
+font-weight: 700;
+width: 100%;
+}
+</style>
+
+	<!--
+	<script type="text/javascript" src="/ext/script/pmis_loader.js"></script>
+	<script>
+		PmisJsLoader.loadModule("/ext/jquery/js/jquery-1.9.1.min.js");
+		//PmisJsLoader.loadModule("Functionsml.js");
+	</script>
+	-->
+	
+	<script type="text/javascript" src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
+	
+	<!-- https://docs.angularjs.org/guide/ie -->
+	<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.29/angular.min.js"></script>
+	
+	<script type="text/javascript" src="seminar-apply.js?v3"></script>
+
+</head>
+
+<body>
+	<div class="wrap" ng-controller="ApplyController as ctrl">
+		<div class="comment">
+			<h1>ACONEX 세미나 신청</h1>
+			<h2>Collaborative project controls and </br>COST management</h2>
+		</div>
+		<div class="success-msg" ng-show="ctrl.saved"><i class="fa fa-check-square-o fa-lg"></i> {{ctrl.successMessage}}</div>
+		<form name="applyForm" class="formWrap" ng-submit="ctrl.apply(applyForm)" novalidate>
+			<input type="hidden" name="event" ng-model="ctrl.reg.event" >
+			<blockquote style="display: none;">
+				{{ctrl.reg.company}}
+			</blockquote>
+			<ul>
+				<li>
+					<input type="radio" ng-model="ctrl.reg.attend" value="Y" required="" />
+					<input type="radio" ng-model="ctrl.reg.attend" value="N" required="" class="second" />
+				</li>
+				<li>
+					<input type="text" ng-model="ctrl.reg.company" required="" ng-maxlength="300">
+				</li>
+				<li>
+					<input type="text" ng-model="ctrl.reg.department" required="" ng-maxlength="300">
+				</li>
+				<li><input type="text" ng-model="ctrl.reg.position" required="" ng-maxlength="100"></li>
+				<li><input type="text" ng-model="ctrl.reg.name" required="" ng-maxlength="300"></li>
+				<li><input type="text" ng-model="ctrl.reg.phone" ng-maxlength="20"></li>
+				<li><input type="email" ng-model="ctrl.reg.email" required="" ng-maxlength="100"></li>
+			</ul>
+            <buttons>
+                <input type="button" ng-click="ctrl.apply(applyForm)" value="신청(Y)" />
+                <input type="button" ng-click="ctrl.cancel(applyForm)" value="취소(C)" />
+            </buttons>
+		</form>
+		<div style="font-family: 돋움,dotum; font-size: 10pt;">
+			<img src="images/form_bg.jpg?v4" border="0" usemap="#Map">
+		</div>
+	</div>
+	
+</body>
+
+</html>

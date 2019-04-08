@@ -1,0 +1,21 @@
+{
+  "name": "seminar",
+  "version": "2.0.0",
+  "description": "Aconex & SangAh Seminar Partecipant Manager",
+  "main": "seminar.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node seminar.js"
+  },
+  "keywords": [
+    "seminar",
+    "sangah",
+    "aconex"
+  ],
+  "author": "Emanuele Disco",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.15.2",
+    "winston": "^3.0.0"
+  }
+}
