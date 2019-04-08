@@ -16,4 +16,4 @@ RUN set -ex && \
 
 EXPOSE 3000 9615
 
-CMD ["pm2-runtime", "server.js", "--web", "9615"]
+CMD ["pm2-runtime", "seminar.js", "--web", "9615"]
