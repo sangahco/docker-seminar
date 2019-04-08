@@ -52,3 +52,6 @@ If they are missing, follow the instructions on the official website (they are n
 
     $ docker-compose build
     $ docker-compose up -d
+
+
+> [PM2](http://pm2.keymetrics.io/) is the process manager for Node.js applications that we use for this app, if you are curious about it!
