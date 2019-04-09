@@ -1,0 +1,24 @@
+version: "2"
+
+services:
+
+  seminar:
+    build: .
+    #image: sangah/seminar
+    ports:
+    - "9615"
+    networks: 
+      default:
+      hub_net:
+        aliases: 
+        - ${HUB_INSTANCE}
+    logging: 
+      driver: "json-file"
+      options:
+        max-size: "10m"
+        max-file: "5"
+    restart: "unless-stopped"
+
+networks: 
+  hub_net:
+    external: true

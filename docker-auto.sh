@@ -43,6 +43,7 @@ echo
 echo "Mode:"
 echo
 echo "Options:"
+echo "  --with-hub      Use the hub service"
 echo "  --help          Show this help message"
 echo
 echo "Commands:"
@@ -65,6 +66,10 @@ fi
 for i in "$@"
 do
 case $i in
+    --with-hub)
+        CONF_ARG="-f docker-compose-with-hub.yml"
+        shift
+        ;;
     --help|-h)
         usage
         exit 1
