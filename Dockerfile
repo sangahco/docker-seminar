@@ -11,6 +11,8 @@ WORKDIR /usr/share/seminar/
 RUN set -ex && \
     apk add --no-cache --virtual \
       nodejs git && \
+    # https://stackoverflow.com/questions/52196518/could-not-get-uid-gid-when-building-node-docker
+    npm config set unsafe-perm true && \
     npm install -g pm2 && \
     npm install
 
