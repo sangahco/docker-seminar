@@ -12,7 +12,7 @@
 		
 		self.initdata = {
 			attend: "Y", // default value
-			event: "ACX - Collaborative Project Controls & Cost Management Nov 11, 2016"
+			event: "TCIC 2019/5 세미나"
 		};
 		self.reg = {};
 		self.saved = false;
