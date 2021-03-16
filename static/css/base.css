@@ -1,0 +1,121 @@
+﻿@charset "UTF-8";
+
+* {
+    -webkit-text-size-adjust:none;
+    -webkit-box-sizing:border-box;
+       -moz-box-sizing:border-box;
+            box-sizing:border-box;
+}
+
+body, form, div, p, h1, h2, h3, h4, h5, h6, dl, dt, dd, ul, ol, li, fieldset, th, td, input, textarea, button, select {
+    margin: 0;
+    padding: 0;
+    font-weight: normal;
+    font-size:16px;
+    color:#4d4d4d;
+}
+
+body {
+    -webkit-user-select: none;
+    -webkit-touch-callout: none;
+    -webkit-tap-highlight-color: rgba(0,0,0,0);
+}
+
+li {
+    list-style: none;
+}
+
+a {
+    text-decoration: none;
+}
+
+    a[href^="tel"] {
+        font-style: normal;
+    }
+
+address, caption, em, var {
+    font-style: normal;
+    font-weight: normal;
+}
+
+input, textarea, select {
+    letter-spacing: normal;
+    outline: none;
+}
+
+ol, ul, dl {
+    list-style: none;
+}
+
+fieldset, img {
+    border: 0;
+}
+
+legend, caption {
+    display: none;
+}
+
+img {
+    width:100%;
+    height:auto;
+    border: 0;
+    vertical-align: top;
+}
+
+hr {
+    display: none;
+}
+
+table {
+    border-collapse: collapse;
+    border-spacing: 0;
+}
+
+br {
+    letter-spacing: normal;
+}
+
+p {
+    letter-spacing: normal;
+}
+
+input {
+    vertical-align: middle;
+}
+
+    input[type="text"], input[type="password"] {
+        -webkit-appearance: none;
+    }
+
+    input[type="checkbox"] {
+        -webkit-appearance: none;
+    }
+
+    input:checked[type="checkbox"] {
+        -webkit-appearance: checkbox;
+    }
+
+    input[type="radio"] {
+        border: none;
+        -webkit-appearance: none;
+    }
+
+    button, input[type="button"], input[type="submit"], input[type="reset"], input[type="file"] {
+        -webkit-appearance: button;
+    }
+
+textarea {
+    -webkit-appearance: none;
+}
+
+select {
+    -webkit-appearance: menulist-text;
+    border-radius: 0; /* 아이폰 사파리 보더 없애기 */
+    -webkit-appearance: none; /* 화살표 없애기 for chrome*/
+    -moz-appearance: none; /* 화살표 없애기 for firefox*/
+    cursor:pointer;
+}
+
+select::-ms-expand {
+    display: none; /* 화살표 없애기 for IE10, 11*/
+} 

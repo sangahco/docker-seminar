@@ -1,118 +1,13 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" ng-app="seminar">
+<html lang="ko" ng-app="seminar">
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
-    <title>TCIC 세미나 신청</title>
+    <title>건설사업관리 AI 자동화시스템 세미나 신청</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no, target-densitydpi=medium-dpi" />
+    <link rel="stylesheet" href="css/base.css" type="text/css" />
+    <link rel="stylesheet" href="css/login.css" type="text/css" />
+
     <style>
-
-        .wrap{
-            width:788px;
-            position:absolute;
-            font-family:'Malgun Gothic';
-            font-size:12pt;
-            left:50%;
-            top:50%;
-            margin-left:-369px;
-            margin-top:-326px;
-        }
-
-        .comment{
-            width:100%;
-            position:absolute;
-            top:40px;
-            text-align:center;
-        }
-
-        .comment h1{
-            color:#5CA5DA;
-        }
-
-        .comment h4 { 
-            color:#515151;
-            margin-top:5px;
-        }
-
-        .comment h2 {
-            margin-top:-5px; 
-            color:#FF5A00
-        }
-
-
-        .formWrap{
-            position:absolute;
-            width:360px;
-            height:240px;
-            left:274px;
-            top:312px;
-        }
-
-        .formWrap ul{
-            height:100%;
-        }
-
-        .formWrap li{
-            height:14.4%;
-            position:relative;
-        }
-
-        .formWrap input[type=text],.formWrap input[type=email]{
-            position:absolute;
-            border:1px solid #CCC;
-            bottom:50%;
-            height:30%;
-            width:98%;
-            padding:1%;
-            transform:translate(0%, 50%);
-            -ms-transform: translate(0%, 50%);
-            -webkit-transform:translate(0%, 50%);
-            -o-transform:translate(0%, 50%);  
-        }
-
-        .formWrap input[type=radio]{
-            position:absolute;
-            top:9px;
-            margin:0;
-        }
-
-        .formWrap input[type=radio]:last-child{
-            left:135px;
-        }
-
-        .formWrap input[type=button]{
-            margin-top:20px;
-            width:115px;
-            height:40px;
-            border:0;
-            border-bottom:3px solid #5C5C5C;
-            background-color: #909090;
-            color:#FFF;
-            cursor:pointer;
-            font-family:'Malgun Gothic';
-        }
-
-
-        .formWrap input[type=button]:hover{
-            background-color:#FF5A00;
-            border-bottom:3px solid #E02900;
-            background-color: ##FF5A00;
-        }
-
-        .formWrap input[type=button]:first-of-type{
-            margin-left:20px;
-        }
-
-        article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, section {  display: block; }
-
-        li { list-style-type:none; }
-
-        html,body,div,span,object,h1,h2,h3,h4,h5,h6,p,
-        blockquote,pre,abbr,address,cite,code,del,dfn,em,img,
-        ins,kbd,q,samp,small,strong,sub,sup,var,b,i,dl,dt,dd,ol,ul,li,
-        fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td,
-        article,aside,canvas,details,figcaption,figure,footer,header,hgroup,
-        menu,nav,section,summary,time,mark,audio,video{margin:0; padding:0;}
-
-
         .success-msg{
         position: absolute;
         top: 17px;
@@ -130,41 +25,80 @@
         .ng-valid.ng-dirty {
         border-color:#78FA89!important;
         }
-
     </style>
 
     <script type="text/javascript" src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
     <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.29/angular.min.js"></script>
     <script type="text/javascript" src="seminar-apply.js?v3"></script>
-
 </head>
 <body>
-    <div class="wrap" ng-controller="ApplyController as ctrl">
-        <div class="comment"></div>
-        <div class="success-msg" ng-show="ctrl.saved"><i class="fa fa-check-square-o fa-lg"></i> {{ctrl.successMessage}}</div>
-        <form name="applyForm" class="formWrap" ng-submit="ctrl.apply(applyForm)" novalidate>
-            <input type="hidden" name="event" ng-model="ctrl.reg.event" >
-            <blockquote style="display: none;">
-                {{ctrl.reg.company}}
-            </blockquote>
-            <ul>
-                <li>
-                    <input type="text" ng-model="ctrl.reg.company" required="" ng-maxlength="300">
-                </li>
-                <li>
-                    <input type="text" ng-model="ctrl.reg.department" required="" ng-maxlength="300">
-                </li>
-                <li><input type="text" ng-model="ctrl.reg.position" required="" ng-maxlength="100"></li>
-                <li><input type="text" ng-model="ctrl.reg.name" required="" ng-maxlength="300"></li>
-                <li><input type="text" ng-model="ctrl.reg.phone" ng-maxlength="20"></li>
-                <li><input type="email" ng-model="ctrl.reg.email" required="" ng-maxlength="100"></li>
-            </ul>
-            <input type="button" ng-click="ctrl.apply(applyForm)" value="신청" />
-            <input type="button" ng-click="ctrl.cancel(applyForm)" value="취소" />
-        </form>
-        <div style="font-family: 돋움,dotum; font-size: 10pt;">
-            <img src="images/form_bg.jpg?v4" border="0" usemap="#Map">
+    <div id="container" >
+        <div id="wrap" ng-controller="ApplyController as ctrl">
+            <div class="success-msg" ng-show="ctrl.saved"><i class="fa fa-check-square-o fa-lg"></i> {{ctrl.successMessage}}</div>
+            <div id="tit-seminar"><img src="images/tit_seminar.png" /></div>
+            <table id="info-seminar">
+                <colgroup style="width:70px;"></colgroup>
+                <colgroup style="width:auto;"></colgroup>
+                <tr>
+                    <td class="color-red">· 대 상</td>
+                    <td>건설 발주기관/기업, 종합건설사, CM/설계사</td>
+                </tr>
+                <tr>
+                    <td class="color-red">· 접 수</td>
+                    <td>
+                        2021년 4월1일~30일<br/>
+                        <font class="color-blue">(주)상아매니지먼트컨설팅 전략경영실 (담당자 : 02-3415-2222  양요한 팀장)</font>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="color-red">· 진 행</td>
+                    <td>2021년 5월~6월 중 <font class="color-blue">협의된 일시와 장소</font>에서 진행됩니다.</td>
+                </tr>
+            </table>
+            <div style="text-align:right; margin-bottom:10px;"><font class="color-red">*</font> 필수입력항목</div>
+
+            <form name="applyForm" class="formWrap" ng-submit="ctrl.apply(applyForm)" novalidate>
+                <input type="hidden" name="event" ng-model="ctrl.reg.event" >
+
+                <table id="apply-seminar">
+                    <colgroup style="width:100px;"></colgroup>
+                    <colgroup style="width:auto;"></colgroup>
+                    <tr>
+                        <td><font class="color-red">*</font> 회사명</td>
+                        <td><input type="text" ng-model="ctrl.reg.company" required="" ng-maxlength="300"></td>
+                    </tr>
+                    <tr>
+                        <td><font class="color-red">*</font> 부서</td>
+                        <td><input type="text" ng-model="ctrl.reg.department" required="" ng-maxlength="300"></td>
+                    </tr>
+                    <tr>
+                        <td><font class="color-red">*</font> 직급</td>
+                        <td><input type="text" ng-model="ctrl.reg.position" required="" ng-maxlength="100"></td>
+                    </tr>
+                    <tr>
+                        <td><font class="color-red">*</font> 성명</td>
+                        <td><input type="text" ng-model="ctrl.reg.name" required="" ng-maxlength="300"></td>
+                    </tr>
+                    <tr>
+                        <td>연락처</td>
+                        <td><input type="text" ng-model="ctrl.reg.phone" ng-maxlength="20"></td>
+                    </tr>
+                    <tr>
+                        <td><font class="color-red">*</font> 이메일</td>
+                        <td><input type="email" ng-model="ctrl.reg.email" required="" ng-maxlength="100"></td>
+                    </tr>
+                </table>
+                <div id="apply-area">
+                    <input type="button" value="신청" class="btn-apply" ng-click="ctrl.apply(applyForm)" style="margin-right:10px;"/>
+                    <input type="button" value="취소" class="btn-apply" ng-click="ctrl.cancel(applyForm)" />
+                </div>
+            </form>
+            <div id="copyright">
+                06239 서울특별시 강남구 테헤란로 8길 41 (역삼동 828-8) NSB 2층<br />
+                (주)상아매니지먼트컨설팅 02-3415-2222 www.sangah.com
+            </div>
         </div>
+
     </div>
 </body>
 </html>

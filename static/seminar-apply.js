@@ -12,7 +12,7 @@
 		
 		self.initdata = {
 			attend: "Y", // default value
-			event: "TCIC 2019/5 세미나"
+			event: "건설사업관리 AI 자동화시스템 2021/4 세미나"
 		};
 		self.reg = {};
 		self.saved = false;
