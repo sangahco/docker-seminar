@@ -15,7 +15,7 @@
   "author": "Emanuele Disco",
   "license": "ISC",
   "dependencies": {
-    "express": "^4.15.2",
+    "express": "^4.18.2",
     "winston": "^3.0.0"
   }
 }
